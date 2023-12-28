@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayerCam : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    private void Update()
+    void Update()
     {
         checkPlayer();
     }
     private void checkPlayer()
     {
-        if (player != null)
+        if( player != null)
         {
             Vector3 pos = player.transform.position;
-            pos.y = 5;
+            pos.z = -10;
             transform.position = pos;
         }
     }
