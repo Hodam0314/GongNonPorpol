@@ -15,7 +15,7 @@ public class FollowPlayer : MonoBehaviour
         if (player != null)
         {
             Vector3 pos = player.transform.position;
-            pos.y = 5;
+            pos.y += 2.5f;
             transform.position = pos;
         }
     }

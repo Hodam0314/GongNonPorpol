@@ -4,19 +4,23 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{ 
+{
+    GameManager manager;
     Rigidbody2D rigid;
     Camera mainCam;
     BoxCollider2D box;
     Animator anim;
+    PlayerHitBox hitbox;
 
     private float verticalVelocity;
     private bool checkjumping = false;
     private bool isGround = false;
-    private float curHp = 0f;
+    private float countjump = 2f;
+    private bool checkhit = false;
 
     [Header("플레이어 관련")]
     [SerializeField] private float MaxHp = 30f;
+    [SerializeField] private float curHp;
     [SerializeField] private float Damage = 5f;
     [SerializeField] private float moveSpeed = 5.0f;
     Vector3 moveDir;
@@ -31,6 +35,9 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        manager = GetComponent<GameManager>();
+        curHp = MaxHp;
+        hitbox = GetComponent<PlayerHitBox>();
     }
 
     void Start()
@@ -45,9 +52,16 @@ public class Player : MonoBehaviour
         jumping();
         checkGround();
         turning();
+        doublejump();
 
         playAnimation();
     }
+
+    public void Hit(float _damage)
+    { 
+        curHp -= _damage;
+    }
+
     private void turning() //왼쪽 , 오른쪽 움직이는 키 할당으로 스케일을 변경하여 플레이어 캐릭터를 반전시켜줌
     {
         if (moveDir.x > 0 && transform.localScale.x < 1)
@@ -87,6 +101,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space)&& isGround == true)
         {
+            countjump = 1;
             checkjumping = true;
             jumping();
         }
@@ -109,6 +124,21 @@ public class Player : MonoBehaviour
         }
         rigid.velocity = new Vector2(rigid.velocity.x, verticalVelocity);
     }
+
+    private void doublejump() //플레이어의 점프카운트를 이용한 더블점프 기능
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && isGround == false && countjump == 1)
+        {
+            checkjumping = true;
+            jumping();
+            countjump += -1;
+        }
+        else if(isGround == true)
+        {
+            countjump = 2;
+        }
+    }
+
     private void playAnimation() //플레이어의 애니메이션 코드
     {
         anim.SetBool("isJump", isGround);
