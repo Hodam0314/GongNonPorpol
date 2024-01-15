@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 7339734}
   - component: {fileID: 7339735}
   - component: {fileID: 7339736}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813579658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.951374, y: -3.383531, z: 0.05340387}
+  m_LocalPosition: {x: -6.951374, y: -3.44, z: 0.05340387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 1068517545}
   - component: {fileID: 1068517547}
   - component: {fileID: 1068517546}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -963,7 +963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392848781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.171373, y: -4.9135313, z: 0.05340387}
+  m_LocalPosition: {x: -9.2, y: -4.94, z: 0.05340387}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -983,7 +983,7 @@ GameObject:
   - component: {fileID: 1419724725}
   - component: {fileID: 1419724727}
   - component: {fileID: 1419724726}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1448,9 +1448,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1454317652679964641, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: ground.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204723380431431066, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4419655962168968558, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
       propertyPath: m_Name
       value: mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 4419655962168968558, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4419655962168968558, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
       propertyPath: m_TagString
@@ -1473,7 +1485,7 @@ GameObject:
   - component: {fileID: 1678632201}
   - component: {fileID: 1678632200}
   - component: {fileID: 1678632202}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
