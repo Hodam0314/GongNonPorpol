@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     private float verticalVelocity;
@@ -25,9 +26,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool isGround = false;
     [SerializeField] BoxCollider2D checkGround;
     [SerializeField] LayerMask ground;
- 
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == GameTag.Player.ToString())
+        {
+            turning();
+        }
+    }
+
     private void Awake()
     {
+
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -47,6 +58,7 @@ public class Enemy : MonoBehaviour
         {
             turning();
         }
+        
     }
 
     private void turning()
