@@ -20,22 +20,29 @@ public class Player : MonoBehaviour
     private float godTimer = 0f;
     private bool checkNuckBack = false;
     private float nuckBackTimer = 0f;
+    private float gravity = 9.81f;
+    Vector3 moveDir;
+
 
     [Header("플레이어 관련")]
     [SerializeField] private float maxHp = 30f;
     [SerializeField] private float curHp;
-    [SerializeField] private float damage = 5f;
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private bool checkGod = false;
     [SerializeField] private float godLimit = 3f;
     [SerializeField] private float highNuckBackForce = 6f;
     [SerializeField] private float nuckBackForce = 4f;
     [SerializeField] private float nuckBackTimeLimit = 1f;
-    Vector3 moveDir;
-
-    [Header("중력 및 점프")]
-    private float gravity = 9.81f;
     [SerializeField] private float jumpForce = 5f;
+    [SerializeField] Sprite sprGod;
+
+    [Header("프리팹")]
+    [SerializeField] GameObject objShoot;
+    [SerializeField] GameObject objwalkdust;
+    [SerializeField] GameObject objjumpjust;
+
+    [Header("쓰레기통")]
+    [SerializeField] Transform TrashLayer;
 
 
     private void Awake()
@@ -60,13 +67,14 @@ public class Player : MonoBehaviour
         checkGround();
         turning();
         doublejump();
+        checkshooting();
 
         playAnimation();
         GodMod();
         Timecheck();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //박스 콜라이더에 닿았을경우 조건에의해 실행되는 코드
     {
         if (collision.gameObject.tag == GameTag.Mob.ToString())
         {
@@ -80,7 +88,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Timecheck()
+    private void checkshooting()
+    {
+
+    }
+
+    private void Timecheck() //시간 타이머 코드
     {
         if (nuckBackTimer != 0.0f)
         {
@@ -94,7 +107,7 @@ public class Player : MonoBehaviour
     }
 
 
-    private void NuckBack()
+    private void NuckBack() //플레이어가 적에게 닿았을때 넉백시켜주는 코드
     {
         if (checkNuckBack == true)
         {
@@ -148,6 +161,11 @@ public class Player : MonoBehaviour
             transform.localScale = scale;
         }
     }
+    private void movingdust()
+    {
+        
+        //Instantiate(objwalkdust, transform.position, Quaternion.identity, TrashLayer);
+    }
 
     private void moving() //플레이어의 움직이는 코드
     {
@@ -156,6 +174,7 @@ public class Player : MonoBehaviour
             moveDir.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
             moveDir.y = rigid.velocity.y;
             rigid.velocity = moveDir;
+            movingdust();
         }
     }
 

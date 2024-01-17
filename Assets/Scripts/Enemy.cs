@@ -9,19 +9,10 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     private float verticalVelocity;
-
-    [Header("지상형 몬스터")]
-    [SerializeField] private float mobMaxHp = 5.0f;
-    [SerializeField] private float mobDamage = 2f;
-    private float curmobHp = 0f;
-
-    [Header("비행형 몬스터")]
-    [SerializeField] private float flyingmobMaxHp = 10.0f;
-    [SerializeField] private float flyingmobDamage = 3f;
-
-
+    private float curHp = 0f;
 
     [Header("적 설정")]
+    [SerializeField] private float MobHp = 5f;
     [SerializeField] private float enemySpeed = 1f;
     [SerializeField] private bool isGround = false;
     [SerializeField] BoxCollider2D checkGround;
@@ -38,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-
+        curHp = MobHp;
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Update()

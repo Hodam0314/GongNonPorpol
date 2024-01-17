@@ -612,14 +612,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 30
   curHp: 0
-  damage: 5
   moveSpeed: 3
   checkGod: 0
   godLimit: 3
-  highNuckBackForce: 1
-  nuckBackForce: 10
+  highNuckBackForce: 5
+  nuckBackForce: 5
   nuckBackTimeLimit: 0.6
   jumpForce: 7
+  objShoot: {fileID: 278427668312726721, guid: 162850f1c396bb141881dfae83a949e8, type: 3}
+  objwalkdust: {fileID: 2179891340031123789, guid: 740c4e284570e7043af21c69cc2686e7, type: 3}
+  objjumpjust: {fileID: 2186214145983708860, guid: 0c0919061d0041748b9cf378a9fd4cc4, type: 3}
+  TrashLayer: {fileID: 1463754406}
 --- !u!61 &1068517545
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1309,6 +1312,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1463754405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463754406}
+  m_Layer: 0
+  m_Name: TrashLayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463754406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463754405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7401848, y: 2.5864012, z: -0.02393122}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1519045103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,7 +1357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155138597167906440, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.46
+      value: 20.95
       objectReference: {fileID: 0}
     - target: {fileID: 155138597167906440, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1380,6 +1414,42 @@ PrefabInstance:
     - target: {fileID: 4419655962168968558, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
       propertyPath: m_TagString
       value: Mob
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582974124334173592, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8260288
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582974124334173592, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Size.y
+      value: 0.82799387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582974124334173592, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.051693916
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582974124334173592, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1720519
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642296140220423904, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917485795272511590, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Size.x
+      value: 0.79977417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917485795272511590, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Size.y
+      value: 0.84175324
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917485795272511590, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.051834106
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917485795272511590, guid: 49519b859c2f1cc46b034f7b8607b225, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.17949378
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
