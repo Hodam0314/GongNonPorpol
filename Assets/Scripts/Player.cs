@@ -16,11 +16,12 @@ public class Player : MonoBehaviour
     private bool checkjumping = false;
     private bool isGround = false;
     private float countjump = 2f;
-    private bool checkhit = false;
     private float godTimer = 0f;
     private bool checkNuckBack = false;
     private float nuckBackTimer = 0f;
     private float gravity = 9.81f;
+    private float dustcooldown = 0f;
+    private bool checkdust;
     Vector3 moveDir;
 
 
@@ -35,11 +36,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float nuckBackTimeLimit = 1f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] Sprite sprGod;
+    [SerializeField] GameObject Dustposition;
+
 
     [Header("프리팹")]
+    [SerializeField] GameObject objBoom;
     [SerializeField] GameObject objShoot;
     [SerializeField] GameObject objwalkdust;
-    [SerializeField] GameObject objjumpjust;
+    [SerializeField] GameObject objjumpdust;
+
 
     [Header("쓰레기통")]
     [SerializeField] Transform TrashLayer;
@@ -68,6 +73,7 @@ public class Player : MonoBehaviour
         turning();
         doublejump();
         checkshooting();
+        jumpingdust();
 
         playAnimation();
         GodMod();
@@ -90,6 +96,10 @@ public class Player : MonoBehaviour
 
     private void checkshooting()
     {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Instantiate(objShoot, transform.position, Quaternion.identity);
+        }
 
     }
 
@@ -125,6 +135,11 @@ public class Player : MonoBehaviour
         if (checkGod == false)
         {
             curHp -= _damage;
+            if(curHp <= 0)
+            {
+                Instantiate(objBoom, transform.position, Quaternion.identity, TrashLayer);
+
+            }
         }
 
         checkGod = true;
@@ -161,10 +176,32 @@ public class Player : MonoBehaviour
             transform.localScale = scale;
         }
     }
-    private void movingdust()
+
+    private void jumpingdust()//점프했을대 먼지 생성코드
     {
-        
-        //Instantiate(objwalkdust, transform.position, Quaternion.identity, TrashLayer);
+        if (Input.GetKeyDown(KeyCode.Space) && countjump == 2)
+        {
+            Instantiate(objjumpdust, Dustposition.transform.position, Quaternion.identity, TrashLayer);
+        }
+    }
+
+    private void movingdust()//움직였을때 먼지생성코드
+    {
+        Instantiate(objwalkdust, Dustposition.transform.position, Quaternion.identity, TrashLayer);
+    }
+
+    private void movingdustcool()//움직였을때 먼지가 몇초단위로 생성되게해줄지 제한하는 코드
+    {
+        if(checkdust == true)
+        {
+            dustcooldown += Time.deltaTime;
+            if (dustcooldown > 0.4f)
+            {
+                movingdust();
+                dustcooldown = 0f;
+            }
+        }
+
     }
 
     private void moving() //플레이어의 움직이는 코드
@@ -174,7 +211,11 @@ public class Player : MonoBehaviour
             moveDir.x = Input.GetAxisRaw("Horizontal") * moveSpeed;
             moveDir.y = rigid.velocity.y;
             rigid.velocity = moveDir;
-            movingdust();
+            if(moveDir.x != 0 && isGround == true)
+            {
+                checkdust = true;
+                movingdustcool();
+            }
         }
     }
 

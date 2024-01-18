@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigid;
     BoxCollider2D boxCollider2D;
     private float verticalVelocity;
-    private float curHp = 0f;
 
     [Header("적 설정")]
     [SerializeField] private float MobHp = 5f;
@@ -18,6 +17,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] BoxCollider2D checkGround;
     [SerializeField] LayerMask ground;
 
+    [SerializeField] GameObject objBoom;
+    [SerializeField] Transform TrashLayer;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -29,7 +30,6 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        curHp = MobHp;
         rigid = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -38,12 +38,12 @@ public class Enemy : MonoBehaviour
         checkingGround();
     }
 
-    private void moving()
+    private void moving()//몬스터의 움직임을 담당하는 코드
     {
         rigid.velocity = new Vector3(enemySpeed, rigid.velocity.y);
     }
 
-    private void checkingGround()
+    private void checkingGround()//몬스터가 땅을 밟고있는지 체크해줌
     {
         if(checkGround.IsTouchingLayers(ground) == false)
         {
@@ -52,7 +52,18 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void turning()
+    public void Hit(float _damage)//몬스터가 데미지를 입는 코드
+    {
+        MobHp -= _damage;
+
+        if (MobHp <= 0)
+        {
+            Instantiate(objBoom, transform.position, Quaternion.identity, TrashLayer);
+            Destroy(gameObject);
+        }
+    }
+
+    private void turning()//땅이아닌 지점에 가까워지면 방향을 전환시켜줌
     {
         Vector3 trs = transform.localScale;
         trs.x *= -1;
