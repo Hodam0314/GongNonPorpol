@@ -595,7 +595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068517539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.06, y: 2.67, z: 0}
+  m_LocalPosition: {x: 2.08, y: 2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -657,6 +657,7 @@ MonoBehaviour:
   objShoot: {fileID: 278427668312726721, guid: 162850f1c396bb141881dfae83a949e8, type: 3}
   objwalkdust: {fileID: 2179891340031123789, guid: 740c4e284570e7043af21c69cc2686e7, type: 3}
   objjumpdust: {fileID: 2186214145983708860, guid: 0c0919061d0041748b9cf378a9fd4cc4, type: 3}
+  objlanddust: {fileID: 4923414136935208302, guid: 1b6fc782671dafd489548f95032195e2, type: 3}
   TrashLayer: {fileID: 1463754406}
 --- !u!61 &1068517545
 BoxCollider2D:

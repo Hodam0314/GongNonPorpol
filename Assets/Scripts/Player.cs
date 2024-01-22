@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject objShoot;
     [SerializeField] GameObject objwalkdust;
     [SerializeField] GameObject objjumpdust;
+    [SerializeField] GameObject objlanddust;
+
 
 
     [Header("쓰레기통")]
@@ -72,8 +74,8 @@ public class Player : MonoBehaviour
         checkGround();
         turning();
         doublejump();
-        checkshooting();
         jumpingdust();
+        checkshoot();
 
         playAnimation();
         GodMod();
@@ -94,12 +96,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void checkshooting()
+    private void checkshoot()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            Instantiate(objShoot, transform.position, Quaternion.identity);
+            shooting();
         }
+
+    }
+    private void shooting()
+    {
+            Instantiate(objShoot, transform.position, Quaternion.identity, TrashLayer);
 
     }
 
@@ -138,7 +145,7 @@ public class Player : MonoBehaviour
             if(curHp <= 0)
             {
                 Instantiate(objBoom, transform.position, Quaternion.identity, TrashLayer);
-
+                Destroy(gameObject);
             }
         }
 

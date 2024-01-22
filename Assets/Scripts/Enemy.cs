@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private bool isGround = false;
     [SerializeField] BoxCollider2D checkGround;
     [SerializeField] LayerMask ground;
+    [SerializeField] Sprite sprHit;
 
     [SerializeField] GameObject objBoom;
     [SerializeField] Transform TrashLayer;
